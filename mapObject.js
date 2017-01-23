@@ -7,6 +7,11 @@ function MapObject(){
     this._array = [];
 }
 
+MapObject.prototype.addNewKey = function (key,value) {
+    this[key] = value;
+    this._array.push([key, value]);
+};
+
 MapObject.prototype.printMapObject = function (){
     if (this._array.length > 0){
         for (var i = 0; i < this._array.length; i++){
@@ -31,17 +36,9 @@ myObject.printMapObject();
 function fillKeysInObject(object){
     for (var i = 0; i < 10; i++){
         var key = generateKey();
-        insertKeyToObject(object,key,i);
+        object.addNewKey(key,i);
     }
 }
-
-
-function insertKeyToObject(object,key, value){
-    object[key] = value;
-    object._array.push([key, value]);
-}
-
-
 
 
 function createAnObject(){
@@ -50,8 +47,9 @@ function createAnObject(){
 }
 
 
+
 function generateKey() {
-    var key = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    var key = Math.random().toString(36).replace(/[^0-z]+/g, '').substr(0, 5);
     return key;
 }
 
