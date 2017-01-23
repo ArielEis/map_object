@@ -3,58 +3,49 @@
  */
 
 
-var object = createObject();
-fillKeysInObject(object);
-printDefaultObject(object);
-printMapObject(object);
-
-
-
-
-
-function createObject(){
-    var object = {
-        array: []
-    };
-
-    return object;
+function MapObject(){
+    this._array = [];
 }
 
 
-function fillKeysInObject(object){
+MapObject.prototype.fillKeysInObject = function (){
     for (var i = 0; i < 10; i++){
         var key = generateKey();
-        insertKeyToObject(object,key,i);
+        this.insertKeyToObject(key,i);
     }
-}
+};
 
 
-
-function insertKeyToObject(object, key, value){
-    object[key] = value;
-    object.array.push([key, value]);
-}
-
+MapObject.prototype.insertKeyToObject = function (key, value){
+    this[key] = value;
+    this._array.push([key, value]);
+};
 
 
-function printDefaultObject(object){
-    console.log("Default print");
-    for (key in object){
-        if (key != 'array'){
-            console.log(key + " is: " + object[key]);
+MapObject.prototype.printMapObject = function (){
+    if (this._array.length > 0){
+        for (var i = 0; i < this._array.length; i++){
+            console.log(this._array[i][0] + " is: " + this._array[i][1]);
         }
+    }else{
+        console.log("Object are empty");
     }
-    console.log("\n");
-}
 
-function printMapObject(object){
-    console.log("Map print");
-    for (var i = 0; i < object.array.length; i++){
-        console.log(object.array[i][0] + " is: " + object.array[i][1]);
-    }
-    console.log("\n");
-}
+};
 
+
+
+var myObject = createAnObject();
+myObject.fillKeysInObject();
+myObject.printMapObject();
+
+
+
+
+function createAnObject(){
+    var mapObject = new MapObject();
+    return mapObject;
+}
 
 
 function generateKey() {
