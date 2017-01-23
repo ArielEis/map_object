@@ -7,21 +7,6 @@ function MapObject(){
     this._array = [];
 }
 
-
-MapObject.prototype.fillKeysInObject = function (){
-    for (var i = 0; i < 10; i++){
-        var key = generateKey();
-        this.insertKeyToObject(key,i);
-    }
-};
-
-
-MapObject.prototype.insertKeyToObject = function (key, value){
-    this[key] = value;
-    this._array.push([key, value]);
-};
-
-
 MapObject.prototype.printMapObject = function (){
     if (this._array.length > 0){
         for (var i = 0; i < this._array.length; i++){
@@ -36,8 +21,25 @@ MapObject.prototype.printMapObject = function (){
 
 
 var myObject = createAnObject();
-myObject.fillKeysInObject();
+fillKeysInObject(myObject);
 myObject.printMapObject();
+
+
+
+
+
+function fillKeysInObject(object){
+    for (var i = 0; i < 10; i++){
+        var key = generateKey();
+        insertKeyToObject(object,key,i);
+    }
+}
+
+
+function insertKeyToObject(object,key, value){
+    object[key] = value;
+    object._array.push([key, value]);
+}
 
 
 
