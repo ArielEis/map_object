@@ -9,10 +9,12 @@ function MapObject(){
 
 MapObject.prototype.addNewKey = function (key,value) {
     this[key] = value;
+    console.log("Key ",key, "was added to object");
     this._array.push([key, value]);
 };
 
 MapObject.prototype.printMapObject = function (){
+    console.log("\n");
     if (this._array.length > 0){
         for (var i = 0; i < this._array.length; i++){
             console.log(this._array[i][0] + " is: " + this._array[i][1]);
@@ -28,8 +30,6 @@ MapObject.prototype.printMapObject = function (){
 var myObject = createAnObject();
 fillKeysInObject(myObject);
 myObject.printMapObject();
-
-
 
 
 
